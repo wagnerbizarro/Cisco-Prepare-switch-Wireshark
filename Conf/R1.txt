@@ -1,0 +1,25 @@
+hostname R1
+!
+interface Loopback0
+ ip address 1.1.1.1 255.255.255.255
+!
+interface FastEthernet0/0
+ description SW-e0/1
+ ip address 172.31.1.1 255.255.255.248
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/1
+ description VPC1-eth0
+ ip address 192.168.1.1 255.255.255.0
+ duplex auto
+ speed auto
+!
+
+router ospf 1
+ router-id 1.1.1.1
+ log-adjacency-changes
+ redistribute connected subnets
+ network 1.1.1.1 0.0.0.0 area 0
+ network 172.31.1.0 0.0.0.7 area 0
+!

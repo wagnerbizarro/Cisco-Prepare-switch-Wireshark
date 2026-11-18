@@ -1,0 +1,17 @@
+hostname Switch
+!
+interface Ethernet0/0
+ description R2-fa0/0
+!
+interface Ethernet0/1
+ description R1-fa0/0
+!
+interface Ethernet0/2
+ description Linux-Wireshark-e0
+!
+interface Vlan1
+ ip address 172.31.1.6 255.255.255.248
+!
+monitor session 1 source interface Et0/1
+monitor session 1 destination interface Et0/2
+!

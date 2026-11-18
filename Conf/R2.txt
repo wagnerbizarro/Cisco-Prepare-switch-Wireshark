@@ -1,0 +1,25 @@
+hostname R2
+!
+interface Loopback0
+ ip address 2.2.2.2 255.255.255.255
+!
+interface FastEthernet0/0
+ description SW-e0/0
+ ip address 172.31.1.2 255.255.255.248
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/1
+ description VPC2-eth0
+ ip address 192.168.2.1 255.255.255.0
+ duplex auto
+ speed auto
+!
+
+router ospf 1
+ router-id 2.2.2.2
+ log-adjacency-changes
+ redistribute connected subnets
+ network 2.2.2.2 0.0.0.0 area 0
+ network 172.31.1.0 0.0.0.7 area 0
+!
